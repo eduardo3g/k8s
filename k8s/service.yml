@@ -5,7 +5,22 @@ metadata:
 spec:
   selector:
     app: goserver
-  type: ClusterIP
+  # type: ClusterIP
+  # ports:
+  # - name: goserver-service
+  #   port: 80 # service is accessed on port 80
+  #   targetPort: 8000 # but redirects traffic to port 8000 inside the container
+  #   protocol: TCP
+
+  # type: NodePort
+  # ports:
+  # - name: goserver-service
+  #   port: 80 # service is accessed on port 80
+  #   targetPort: 8000 # but redirects traffic to port 8000 inside the container
+  #   protocol: TCP
+  #   nodePort: 30001 # 30000 - 32767
+
+  type: LoadBalancer
   ports:
   - name: goserver-service
     port: 80 # service is accessed on port 80
