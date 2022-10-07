@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "eduardo3g/hello-go:v5"
+          image: "eduardo3g/hello-go:v6"
           # env:
           #   - name: NAME
           #     valueFrom:
@@ -31,11 +31,14 @@ spec:
           envFrom:
             - configMapRef:
                 name: goserver-env
+            - secretRef:
+                name: goserver-secret
           
           # Creates a file inside the Pod (/myfamily/family.txt)
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: config
+              readOnly: true
       
       volumes:
         - name: config
