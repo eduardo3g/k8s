@@ -16,7 +16,16 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "eduardo3g/hello-go:v6"
+          image: "eduardo3g/hello-go:v6.1"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000 # container port, not the service port
+            periodSeconds: 5
+            failureThreshold: 3 # needs to fail 3 times to restart container
+            timeoutSeconds: 1
+            successThreshold: 1
+              
           # env:
           #   - name: NAME
           #     valueFrom:
