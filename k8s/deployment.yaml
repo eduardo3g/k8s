@@ -16,15 +16,22 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "eduardo3g/hello-go:v6.1"
-          livenessProbe:
+          image: "eduardo3g/hello-go:v6.2"
+          readinessProbe:
             httpGet:
               path: /healthz
               port: 8000 # container port, not the service port
-            periodSeconds: 5
-            failureThreshold: 3 # needs to fail 3 times to restart container
-            timeoutSeconds: 1
-            successThreshold: 1
+            initialDelaySeconds: 10 # wait for 10sec before k8s start trying to check status
+            periodSeconds: 3
+            failureThreshold: 1 # if fails once, it means the app is not ready
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 8000 # container port, not the service port
+          #   periodSeconds: 5
+          #   failureThreshold: 3 # needs to fail 3 times to restart container
+          #   timeoutSeconds: 1
+          #   successThreshold: 1
               
           # env:
           #   - name: NAME
