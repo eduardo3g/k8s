@@ -17,6 +17,17 @@ spec:
       containers:
         - name: goserver
           image: "eduardo3g/hello-go:v6.2"
+
+          # vCPU -> 1000 milicores
+          resources:
+            requests: # the minimum of resources to be reseverd to the pod inside the node
+              cpu: "0.3" # 300 milicores
+              memory: 20Mi
+            limits:
+              cpu: "0.3" # 300 milicores
+              memory: 25Mi
+
+
           startupProbe:
             httpGet:
               path: /healthz
