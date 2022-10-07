@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: goserver
-  replicas: 10
+  replicas: 1
   template:
     metadata:
       labels:
@@ -21,10 +21,10 @@ spec:
           # vCPU -> 1000 milicores
           resources:
             requests: # the minimum of resources to be reseverd to the pod inside the node
-              cpu: "0.3" # 300 milicores
+              cpu: "0.05"
               memory: 20Mi
             limits:
-              cpu: "0.3" # 300 milicores
+              cpu: "0.05"
               memory: 25Mi
 
 
